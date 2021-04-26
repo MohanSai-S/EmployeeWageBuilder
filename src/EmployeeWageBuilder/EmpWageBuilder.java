@@ -6,13 +6,20 @@ public class EmpWageBuilder {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to Employee Wage");
 		//Constants
-		int IS_FULL_TIME=1;
-		//Computation
+		int isPresent=1;
+		int workingHours=0;
+		int wagePerHour=20;
+		//Computation		
 		double empCheck = Math.floor(Math.random()*10)%2;
-		if (empCheck == IS_FULL_TIME)
+		if (empCheck == isPresent) {
+			workingHours=8;
 			System.out.println("Employee is Present");
-		else
+		}
+		else {
+			workingHours=0;
 			System.out.println("Employee is Absent");
 		}
-
+		int wage = wagePerHour*workingHours;
+		System.out.println("Employee wage per day is "+ wage);
+	}
 }
