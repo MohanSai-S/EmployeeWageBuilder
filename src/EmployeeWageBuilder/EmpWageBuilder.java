@@ -6,14 +6,19 @@ public class EmpWageBuilder {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to Employee Wage");
 		//Constants
-		int isPresent=1;
+		int isFullTime=1;
+		int isPartTime=2;
 		int workingHours=0;
 		int wagePerHour=20;
 		//Computation		
-		double empCheck = Math.floor(Math.random()*10)%2;
-		if (empCheck == isPresent) {
+		double empCheck = Math.floor(Math.random()*10)%3;
+		if (empCheck == isFullTime) {
 			workingHours=8;
-			System.out.println("Employee is Present");
+			System.out.println("Employee is Full time");
+		}
+		else if (empCheck == isPartTime) {
+			workingHours=4;
+			System.out.println("Employee is Part time");
 		}
 		else {
 			workingHours=0;
