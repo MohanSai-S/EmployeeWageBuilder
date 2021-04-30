@@ -12,7 +12,7 @@ public class EmpWageBuilder {
 	
 	void attendance() {
 		//Computation
-		int empCheck =(int) Math.round(Math.floor(Math.random()*10)%3);
+		int empCheck =(int) Math.floor(Math.random()*10)%3;
 	
 		switch (empCheck) {
 	
