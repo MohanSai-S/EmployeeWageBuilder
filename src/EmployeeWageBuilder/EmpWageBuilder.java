@@ -3,8 +3,8 @@ package EmployeeWageBuilder;
 public class EmpWageBuilder {
 	
 	//Constants
-	public static final int isFullTime=1;
-	public static final int isPartTime=2;
+	public static final int IS_FULL_TIME=1;
+	public static final int IS_PART_TIME=2;
 	public static final int wagePerHour=20;
 	public static final int noOfWorkingDays=20;
 	public static final int maxWorkingHours=100;
@@ -16,10 +16,10 @@ public class EmpWageBuilder {
 	
 		switch (empCheck) {
 	
-			case isFullTime:
+			case IS_FULL_TIME:
 				workingHours=8;
 				break;
-			case isPartTime:
+			case IS_PART_TIME:
 				workingHours=4;
 				break;
 			default:
@@ -37,8 +37,6 @@ public class EmpWageBuilder {
 		//Computation		
 		
 		for (day=1;day<=noOfWorkingDays;day++) {
-			
-			
 			
 			if (day<=noOfWorkingDays && totalWorkingHours<=maxWorkingHours) {
 		
