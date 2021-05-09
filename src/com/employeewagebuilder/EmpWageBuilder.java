@@ -6,7 +6,7 @@
 package com.employeewagebuilder;
 
 /**
- * @description A class defining the Employee Wage builder
+ * @description Class for defining the Employee Wage builder
  * @author The_Vuppukari
  *
  */
@@ -15,25 +15,40 @@ public class EmpWageBuilder {
 	//Constants
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
-	public String company;
-	private int empWagePerHour;
-	private int noOfWorkingDays;
-	private int maxWorkingHours;
+		
+	private int noOfCompany=0;
+	private CompanyEmpWage[] companyEmpWageArray;
 	
 	/**
-	 * @description Employee Wage builder constructor
+	 * @description Private method to create a Employee Wage Builder constructor
+	 * @param none
+	 */
+	private EmpWageBuilder(){
+		companyEmpWageArray = new CompanyEmpWage[5];		
+	}
+	
+	/**
+	 * @description Private method for adding the employee wage of a company to array
 	 * @param company
 	 * @param empRatePerHour
 	 * @param noOfWorkingDays
-	 * @param maxHoursPerMonth
+	 * @param maxWorkingHours
 	 */
-	private EmpWageBuilder(String company, int empRatePerHour,int noOfWorkingDays, int maxHoursPerMonth) {
-		this.company = company;
-		this.empWagePerHour = empRatePerHour;
-		this.noOfWorkingDays = noOfWorkingDays;
-		this.maxWorkingHours = maxHoursPerMonth;
-		
+	private void addCompanyEmpWage(String company,int empRatePerHour,int noOfWorkingDays,int maxWorkingHours) {
+		companyEmpWageArray[noOfCompany] = new CompanyEmpWage(company,empRatePerHour,noOfWorkingDays,maxWorkingHours);
+		noOfCompany++;
 	}
+	
+	/**
+	 * @description public method to display the company EmployeeWage Array
+	 * @ param none
+	 */
+	public void computeEmpWage() {
+        for (int i = 0; i < noOfCompany; i++) {
+        	companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+            System.out.println(companyEmpWageArray[i]);
+        }
+    }
 	
 	/**
 	 * @description Private method that returns a random value to check the Employee attendance.
@@ -67,37 +82,21 @@ public class EmpWageBuilder {
 	}
 	
 	/**
-	 * @description Private method for caluclating the total working hours
+	 * @description Private method for caluclating the total employee Wage by taking variables from the
+	 * company Employee Wage File.
 	 * @param none
-	 * @return
+	 * @return Total Employee Wage
 	 */
-	private int totalWorkingHours() {
+	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		
-		int noOfWorkingHours=0;
-		for (int day=1;day<=noOfWorkingDays;day++) {
-			if (day<=noOfWorkingDays && noOfWorkingHours<=maxWorkingHours) {
-				noOfWorkingHours += workingHoursCaluclator();
+		int totalWorkingHours=0;
+		for (int day=1;day<=companyEmpWage.noOfWorkingDays;day++) {
+			if (day<=companyEmpWage.noOfWorkingDays && totalWorkingHours<=companyEmpWage.maxWorkingHours) {
+				totalWorkingHours += workingHoursCaluclator();
 			}			
 		}
-		return noOfWorkingHours;
+		return totalWorkingHours*companyEmpWage.empWagePerHour;
 		
-	}
-	
-	/**
-	 * @description Private method for caluclating the total employee wage
-	 * @param none
-	 * @return
-	 */
-	private int totalEmployeeWage() {
-		return totalWorkingHours()*empWagePerHour;
-	}
-	
-	/**
-	 * @description Public Method for overriding the code to display the output
-	 * @param none
-	 */
-	public String toString() {
-		return "Total wage for company " +company+ " is " + totalEmployeeWage();
 	}
 	
 	/**
@@ -106,12 +105,10 @@ public class EmpWageBuilder {
 	 */
 	public static void main(String[] args) {
 		
-		EmpWageBuilder dmart = new EmpWageBuilder("Dmart",20,4,20);
-		EmpWageBuilder reliance = new EmpWageBuilder("Reliance",15,30,100);
-		EmpWageBuilder wallMart = new EmpWageBuilder("Wall Mart",25,20,150);
-		System.out.println(dmart);
-		System.out.println(reliance);
-		System.out.println(wallMart);
+		EmpWageBuilder employeeWageBuilder = new EmpWageBuilder();
+		employeeWageBuilder.addCompanyEmpWage("Reliance",15,30,100);
+		employeeWageBuilder.addCompanyEmpWage("Wall Mart",25,20,150);
+		employeeWageBuilder.computeEmpWage();
 		
 	}
 }
