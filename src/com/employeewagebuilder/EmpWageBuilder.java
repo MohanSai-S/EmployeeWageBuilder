@@ -106,7 +106,12 @@ public class EmpWageBuilder {
 	 */
 	public static void main(String[] args) {
 		
-		EmpWageBuilder Dmart = new EmpWageBuilder("Dmart",20,4,20);
-		System.out.println(Dmart);
+		EmpWageBuilder dmart = new EmpWageBuilder("Dmart",20,4,20);
+		EmpWageBuilder reliance = new EmpWageBuilder("Reliance",15,30,100);
+		EmpWageBuilder wallMart = new EmpWageBuilder("Wall Mart",25,20,150);
+		System.out.println(dmart);
+		System.out.println(reliance);
+		System.out.println(wallMart);
+		
 	}
 }
