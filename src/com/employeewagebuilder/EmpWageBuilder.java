@@ -10,7 +10,7 @@ package com.employeewagebuilder;
  * @author The_Vuppukari
  *
  */
-public class EmpWageBuilder {
+public class EmpWageBuilder implements ComputeEmpWage{
 	
 	//Constants
 	private static final int IS_FULL_TIME=1;
@@ -34,7 +34,7 @@ public class EmpWageBuilder {
 	 * @param noOfWorkingDays
 	 * @param maxWorkingHours
 	 */
-	private void addCompanyEmpWage(String company,int empRatePerHour,int noOfWorkingDays,int maxWorkingHours) {
+	public void addCompanyEmpWage(String company,int empRatePerHour,int noOfWorkingDays,int maxWorkingHours) {
 		companyEmpWageArray[noOfCompany] = new CompanyEmpWage(company,empRatePerHour,noOfWorkingDays,maxWorkingHours);
 		noOfCompany++;
 	}
@@ -85,9 +85,10 @@ public class EmpWageBuilder {
 	 * @description Private method for caluclating the total employee Wage by taking variables from the
 	 * company Employee Wage File.
 	 * @param none
+	 * @return 
 	 * @return Total Employee Wage
 	 */
-	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
+	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		
 		int totalWorkingHours=0;
 		for (int day=1;day<=companyEmpWage.noOfWorkingDays;day++) {
