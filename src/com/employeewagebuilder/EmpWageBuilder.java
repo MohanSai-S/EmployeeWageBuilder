@@ -5,6 +5,8 @@
  */
 package com.employeewagebuilder;
 
+import java.util.ArrayList;
+
 /**
  * @description Class for defining the Employee Wage builder
  * @author The_Vuppukari
@@ -15,16 +17,14 @@ public class EmpWageBuilder implements ComputeEmpWage{
 	//Constants
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
-		
-	private int noOfCompany=0;
-	private CompanyEmpWage[] companyEmpWageArray;
 	
 	/**
-	 * @description Private method to create a Employee Wage Builder constructor
+	 * @description Private method to create a ArrayList for saving Employee Wage.
 	 * @param none
 	 */
+	private ArrayList<CompanyEmpWage> companyEmpWageList;
 	private EmpWageBuilder(){
-		companyEmpWageArray = new CompanyEmpWage[5];		
+		companyEmpWageList = new ArrayList<>();		
 	}
 	
 	/**
@@ -35,8 +35,8 @@ public class EmpWageBuilder implements ComputeEmpWage{
 	 * @param maxWorkingHours
 	 */
 	public void addCompanyEmpWage(String company,int empRatePerHour,int noOfWorkingDays,int maxWorkingHours) {
-		companyEmpWageArray[noOfCompany] = new CompanyEmpWage(company,empRatePerHour,noOfWorkingDays,maxWorkingHours);
-		noOfCompany++;
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company,empRatePerHour,noOfWorkingDays,maxWorkingHours);
+		companyEmpWageList.add(companyEmpWage);
 	}
 	
 	/**
@@ -44,9 +44,10 @@ public class EmpWageBuilder implements ComputeEmpWage{
 	 * @ param none
 	 */
 	public void computeEmpWage() {
-        for (int i = 0; i < noOfCompany; i++) {
-        	companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-            System.out.println(companyEmpWageArray[i]);
+        for (int i = 0;  i < companyEmpWageList.size(); i++) {
+        	 CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
+             companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+             System.out.println(companyEmpWage);
         }
     }
 	
